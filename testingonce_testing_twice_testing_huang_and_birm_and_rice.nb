@@ -1,0 +1,226 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      7445,        218]
+NotebookOptionsPosition[      6966,        201]
+NotebookOutlinePosition[      7357,        217]
+CellTagsIndexPosition[      7314,        214]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\n", 
+ RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], "\n", 
+ RowBox[{"ClearAll", "[", "\"\<context`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"assumps", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[Kappa]", ">", 
+      RowBox[{"3", "/", "2"}]}], ",", 
+     RowBox[{"\[Kappa]0", ">", 
+      RowBox[{"3", "/", "2"}]}], ",", 
+     RowBox[{"Tpar0", ">", "0"}], ",", 
+     RowBox[{"Tperp0", ">", "0"}], ",", 
+     RowBox[{"Tpar", ">", "0"}], ",", 
+     RowBox[{"Tperp", ">", "0"}], ",", 
+     RowBox[{"m", ">", "0"}], ",", 
+     RowBox[{"A0", ">", "0"}], ",", 
+     RowBox[{"d", ">", "0"}], ",", 
+     RowBox[{"\[CapitalDelta]PE", "\[Element]", "Reals"}], ",", 
+     RowBox[{
+      FractionBox["\[CapitalDelta]PE", 
+       RowBox[{"\[Kappa]0", "*", "Tpar0"}]], ">", 
+      RowBox[{"-", "1"}]}], ",", 
+     RowBox[{
+      RowBox[{"A0", " ", "d"}], "<", 
+      RowBox[{"A0", "+", "d"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Kappa]", "=", "\[Kappa]0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      FractionBox[
+       RowBox[{
+        SqrtBox[
+         FractionBox["\[Pi]", "2"]], " ", 
+        SqrtBox[
+         FractionBox[
+          RowBox[{"Tperp", " ", "\[Kappa]"}], "m"]], " ", 
+        RowBox[{"Gamma", "[", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Kappa]"}], "]"}]}], 
+       RowBox[{"2", " ", 
+        RowBox[{"Gamma", "[", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox["1", "2"]}], "+", "\[Kappa]"}], "]"}]}]], "==", 
+      FractionBox[
+       RowBox[{
+        SqrtBox[
+         FractionBox["\[Pi]", "2"]], " ", 
+        SqrtBox[
+         FractionBox[
+          RowBox[{"Tperp0", " ", 
+           RowBox[{"(", 
+            RowBox[{"\[CapitalDelta]PE", "+", 
+             RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ")"}]}], 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"A0", "+", "d", "-", 
+             RowBox[{"A0", " ", "d"}]}], ")"}], " ", "m", " ", "Tpar0"}]]], 
+        " ", 
+        RowBox[{"Gamma", "[", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Kappa]0"}], "]"}]}], 
+       RowBox[{"2", " ", 
+        RowBox[{"Gamma", "[", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox["1", "2"]}], "+", "\[Kappa]0"}], "]"}]}]]}], ",", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"2", " ", "Tperp", " ", "\[Kappa]"}], 
+       RowBox[{
+        RowBox[{"-", "3"}], "+", 
+        RowBox[{"2", " ", "\[Kappa]"}]}]], "==", 
+      FractionBox[
+       RowBox[{"2", " ", "Tperp0", " ", 
+        RowBox[{"(", 
+         RowBox[{"\[CapitalDelta]PE", "+", 
+          RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ")"}]}], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"A0", "+", "d", "-", 
+          RowBox[{"A0", " ", "d"}]}], ")"}], " ", "Tpar0", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "3"}], "+", 
+          RowBox[{"2", " ", "\[Kappa]0"}]}], ")"}]}]]}], ",", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"2", " ", "Tpar", "*", "\[Kappa]"}], 
+       RowBox[{
+        RowBox[{"-", "3"}], "+", 
+        RowBox[{"2", " ", "\[Kappa]"}]}]], "==", 
+      FractionBox[
+       RowBox[{"2", " ", 
+        RowBox[{"(", 
+         RowBox[{"\[CapitalDelta]PE", "+", 
+          RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ")"}]}], 
+       RowBox[{
+        RowBox[{"-", "3"}], "+", 
+        RowBox[{"2", " ", "\[Kappa]0"}]}]]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"Tperp", ",", "Tpar"}], "}"}], ",", 
+   RowBox[{"Assumptions", "->", "assumps"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.936779026500808*^9, 3.936779061169301*^9}, 
+   3.9367791191578083`*^9, {3.936779242946266*^9, 3.936779288872362*^9}, {
+   3.936779366901176*^9, 3.936779390951947*^9}, {3.936779513780525*^9, 
+   3.936779526953528*^9}, {3.9367795975443707`*^9, 3.9367796054822483`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"164a97e5-8a39-465e-a4d8-776f11549108"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Tperp", "\[Rule]", 
+     TemplateBox[{
+       FractionBox[
+        RowBox[{
+          RowBox[{
+            RowBox[{"-", "Tperp0"}], " ", "\[CapitalDelta]PE"}], "-", 
+          RowBox[{"Tpar0", " ", "Tperp0", " ", "\[Kappa]0"}]}], 
+        RowBox[{
+          RowBox[{
+            RowBox[{"-", "A0"}], " ", "Tpar0", " ", "\[Kappa]0"}], "-", 
+          RowBox[{"d", " ", "Tpar0", " ", "\[Kappa]0"}], "+", 
+          RowBox[{"A0", " ", "d", " ", "Tpar0", " ", "\[Kappa]0"}]}]], 
+       RowBox[{
+         RowBox[{"(", 
+           RowBox[{
+             RowBox[{
+               RowBox[{"A0", "-", 
+                 FractionBox["d", 
+                  RowBox[{
+                    RowBox[{"-", "1"}], "+", "d"}]]}], "<", "0"}], "&&", 
+             RowBox[{
+               RowBox[{"\[CapitalDelta]PE", "+", 
+                 RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ">", "0"}]}], ")"}], 
+         "||", 
+         RowBox[{"(", 
+           RowBox[{
+             RowBox[{
+               RowBox[{"\[CapitalDelta]PE", "+", 
+                 RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ">", "0"}], "&&", 
+             RowBox[{"d", "\[LessEqual]", "1"}]}], ")"}]}]},
+      "ConditionalExpression"]}], ",", 
+    RowBox[{"Tpar", "\[Rule]", 
+     TemplateBox[{
+       FractionBox[
+        RowBox[{"\[CapitalDelta]PE", "+", 
+          RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], "\[Kappa]0"], 
+       RowBox[{
+         RowBox[{"(", 
+           RowBox[{
+             RowBox[{
+               RowBox[{"A0", "-", 
+                 FractionBox["d", 
+                  RowBox[{
+                    RowBox[{"-", "1"}], "+", "d"}]]}], "<", "0"}], "&&", 
+             RowBox[{
+               RowBox[{"\[CapitalDelta]PE", "+", 
+                 RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ">", "0"}]}], ")"}], 
+         "||", 
+         RowBox[{"(", 
+           RowBox[{
+             RowBox[{
+               RowBox[{"\[CapitalDelta]PE", "+", 
+                 RowBox[{"Tpar0", " ", "\[Kappa]0"}]}], ">", "0"}], "&&", 
+             RowBox[{"d", "\[LessEqual]", "1"}]}], ")"}]}]},
+      "ConditionalExpression"]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.9367795110215054`*^9, 3.93677952749953*^9}, {
+  3.936779600518104*^9, 
+  3.936779615972743*^9}},ExpressionUUID->"3b00349d-766f-4da7-8103-\
+5202d65d3944"]
+}, Open  ]]
+},
+WindowSize->{808, 897},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"14.1 for Mac OS X x86 (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"6ae135a5-b6bc-4a57-9669-c427cb034441"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4034, 112, 300, "Input",ExpressionUUID->"164a97e5-8a39-465e-a4d8-776f11549108"],
+Cell[4613, 136, 2337, 62, 149, "Output",ExpressionUUID->"3b00349d-766f-4da7-8103-5202d65d3944"]
+}, Open  ]]
+}
+]
+*)
+
