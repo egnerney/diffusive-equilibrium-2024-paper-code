@@ -34,23 +34,27 @@ masses = {
 case_names = ['A', 'B', 'C', 'D', 'E', 'F']
 case_labels = ['Case A', 'Case B', 'Case C', 'Case D', 'Case E', 'Case F']
 
-n_out_filenames = [
-    'new_nominal_model_n_out_new_nominal_model_4-10_iso_max_all.npz',                           # Case A
-    'new_nominal_model_n_out_new_nominal_model_4-10_aniso2_max_all.npz',                        # Case B
-    'new_nominal_model_n_out_nominal_model_4-10_iso_standard_kappa_all.npz',                    # Case C
-    'new_nominal_model_n_out_nominal_model_4-10_aniso2_standard_kappa_all.npz',                 # Case D
-    'new_nominal_model_n_out_nominal_model_4-10_isoT_isokappa_product_kappa_all_nominal_model.npz',  # Case E
-    'new_nominal_model_n_out_nominal_model_4-10_aniso_fried_egg_all_nominal_model.npz'          # Case F
-]
+
 
 field_data_filenames = [
-    'new_nominal_model_field_data_new_nominal_model_4-10_iso_max_all.npz',                      # Case A
-    'new_nominal_model_field_data_new_nominal_model_4-10_aniso2_max_all.npz',                   # Case B
-    'new_nominal_model_field_data_nominal_model_4-10_iso_standard_kappa_all.npz',               # Case C
-    'new_nominal_model_field_data_nominal_model_4-10_aniso2_standard_kappa_all.npz',            # Case D
-    'new_nominal_model_field_data_nominal_model_4-10_isoT_isokappa_product_kappa_all_nominal_model.npz',  # Case E
-    'new_nominal_model_field_data_nominal_model_4-10_aniso_fried_egg_all_nominal_model.npz'     # Case F
+     'final_new_nominal_model_field_data_nominal_model_4-10_isoT_A=1_max_all_nominal_model.npz',
+     'final_new_nominal_model_field_data_nominal_model_4-10_anisoT_A=2_max_all_nominal_model.npz',
+    'final_new_nominal_model_field_data_nominal_model_4-10_isoT_isokappa_A=1_standard_kappa_all_nominal_model.npz',
+     'final_new_nominal_model_field_data_nominal_model_4-10_anisoT_isokappa_A=2_standard_kappa_all_nominal_model.npz',
+    'final_new_nominal_model_field_data_nominal_model_4-10_isoT_isokappa_A=1_product_kappa_all_nominal_model.npz',
+     'final_new_nominal_model_field_data_nominal_model_4-10_isoT_isokappa_A=1_fried_egg_all_nominal_model.npz',
 ]
+
+n_out_filenames = [
+    'final_new_nominal_model_n_out_nominal_model_4-10_isoT_A=1_max_all_nominal_model.npz',
+    'final_new_nominal_model_n_out_nominal_model_4-10_anisoT_A=2_max_all_nominal_model.npz',
+     'final_new_nominal_model_n_out_nominal_model_4-10_isoT_isokappa_A=1_standard_kappa_all_nominal_model.npz',
+     'final_new_nominal_model_n_out_nominal_model_4-10_anisoT_isokappa_A=2_standard_kappa_all_nominal_model.npz',
+     'final_new_nominal_model_n_out_nominal_model_4-10_isoT_isokappa_A=1_product_kappa_all_nominal_model.npz',
+    'final_new_nominal_model_n_out_nominal_model_4-10_isoT_isokappa_A=1_fried_egg_all_nominal_model.npz',
+]
+
+
 
 cases = {}
 

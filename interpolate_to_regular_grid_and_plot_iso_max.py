@@ -18,26 +18,31 @@ import matplotlib.image as mpimg
 import matplotlib.tri as tri
 from scipy.interpolate import griddata
 
+
+
 def isnotfinite(arr):
     res = np.isfinite(arr)
     np.bitwise_not(res, out=res)  # in-place
     return res
 
-# Load n_ou
-n_out_loaded_iso_max = np.load('new_nominal_model_n_out_new_nominal_model_4-10_iso_max_all.npz')
+#final_new_nominal_model_n_out_nominal_model_4-10_isoT_A=1_max_all_nominal_model.npz
+#final_new_nominal_model_n_out_nominal_model_4-10_anisoT_A=2_max_all_nominal_model.npz
+#final_new_nominal_model_n_out_nominal_model_4-10_anisoT_A=2_Aniso_Maxwellian_const_Tperp_all_nominal_model.npz
+# Load n_out
+n_out_loaded_iso_max = np.load('final_new_nominal_model_n_out_nominal_model_4-10_isoT_A=1_max_all_nominal_model.npz')
 n_out_iso_max = {key: n_out_loaded_iso_max[key] for key in n_out_loaded_iso_max}
 
-# Load n_ou
-n_out_loaded = np.load('new_nominal_model_n_out_new_nominal_model_4-10_aniso2_max_all.npz')
+# Load n_out
+n_out_loaded = np.load('final_new_nominal_model_n_out_nominal_model_4-10_anisoT_A=2_Aniso_Maxwellian_const_Tperp_all_nominal_model.npz')
 n_out = {key: n_out_loaded[key] for key in n_out_loaded}
 
 
-# Load T_out
-T_out_loaded = np.load('new_nominal_model_T_out_new_nominal_model_4-10_aniso2_max_all.npz')
-T_out = {key: T_out_loaded[key] for key in T_out_loaded}
 
 # Load field data
-field_data = np.load('new_nominal_model_field_data_new_nominal_model_4-10_aniso2_max_all.npz')
+#final_new_nominal_model_field_data_nominal_model_4-10_isoT_A=1_max_all_nominal_model.npz
+#final_new_nominal_model_field_data_nominal_model_4-10_anisoT_A=2_max_all_nominal_model.npz
+#final_new_nominal_model_field_data_nominal_model_4-10_anisoT_A=2_Aniso_Maxwellian_const_Tperp_all_nominal_model.npz
+field_data = np.load('final_new_nominal_model_field_data_nominal_model_4-10_anisoT_A=2_Aniso_Maxwellian_const_Tperp_all_nominal_model.npz')
 x_out = field_data['x_out']
 y_out = field_data['y_out']
 z_out = field_data['z_out']
@@ -53,10 +58,11 @@ lat_out_deg = np.degrees(np.arcsin(z_out / r_out))
 
 #numdens_species_labels = [r'$\bf{n_{O^{+}}}$', r'$\bf{n_{O^{++}}}$', r'$\bf{n_{S^{+}}}$', r'$\bf{n_{S^{++}}}$', r'$\bf{n_{S^{+++}}}$', r'$\bf{n_{H^{+}}}$', r'$\bf{n_{Na^{+}}}$', r'$\bf{n_{O^{+}}}$ (hot)', r'$\bf{n_{e^{-}}}$ (hot)', r'$\bf{n_{e^{-}}}$']
 
-species_keys = ['op', 'o2p', 'sp', 's2p', 's3p', 'hp', 'nap', 'elec']
-species_labels = ['O$^{+}$', 'O$^{++}$', 'S$^{+}$', 'S$^{++}$', 'S$^{+++}$', 'H$^{+}$', 'Na$^{+}$', 'e$^{-}$']
+# Define the species keys and labels in the desired order
+species_keys = ['op', 'o2p', 'sp', 's2p', 's3p', 'hp', 'nap', 'oph', 'eh', 'elec']
+species_labels = ['O$^{+}$', 'O$^{++}$', 'S$^{+}$', 'S$^{++}$', 'S$^{+++}$', 'H$^{+}$', 'Na$^{+}$', 'O$^{+}$ (hot)', 'e$^{-}$ (hot)', 'e$^{-}$']
 
-numdens_species_labels = [r'$\bf{n_{O^{+}}}$', r'$\bf{n_{O^{++}}}$', r'$\bf{n_{S^{+}}}$', r'$\bf{n_{S^{++}}}$', r'$\bf{n_{S^{+++}}}$', r'$\bf{n_{H^{+}}}$', r'$\bf{n_{Na^{+}}}$', r'$\bf{n_{e^{-}}}$']
+numdens_species_labels = [r'$\bf{n_{O^{+}}}$', r'$\bf{n_{O^{++}}}$', r'$\bf{n_{S^{+}}}$', r'$\bf{n_{S^{++}}}$', r'$\bf{n_{S^{+++}}}$', r'$\bf{n_{H^{+}}}$', r'$\bf{n_{Na^{+}}}$', r'$\bf{n_{O^{+}}}$ (hot)', r'$\bf{n_{e^{-}}}$ (hot)', r'$\bf{n_{e^{-}}}$']
 
 # Flatten the coordinate and density arrays
 rho_flat = rho_out.flatten()
@@ -82,15 +88,13 @@ jupiter_height = 2 * oblateness_factor
 img_extent = [-1.0, 1.0, -oblateness_factor, oblateness_factor]
 
 # Create a figure with adjusted size and margins to accommodate labels and aspect ratio
-fig = plt.figure(figsize=(11.25, 10))  # Adjust the height as needed
-nrows = 4
+fig = plt.figure(figsize=(9, 10))  # Adjust the height as needed
+nrows = 5
 ncols = 2
 gs = fig.add_gridspec(nrows, ncols,left=0.075,bottom=0.05,hspace=0,wspace=0)#, left=0.075, right=1.0, top=0.95, bottom=0.05, wspace=0.0, hspace=0.0)
-#gs = fig.add_gridspec(nrows, ncols,hspace=0,wspace=0)#, left=0.075, right=1.0, top=0.95, bottom=0.05, wspace=0.0, hspace=0.0)
 
-
-(ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8) = gs.subplots(sharex='col', sharey='row')
-axes = [ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8]
+(ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8), (ax9, ax10) = gs.subplots(sharex='col', sharey='row')
+axes = [ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10]
 
 nlevels = 1000
 
@@ -119,6 +123,13 @@ minnhp=0.5
 maxnhp=n_out_iso_max['hp'].max()
 
 
+minnoph=0.1
+maxnoph=n_out_iso_max['oph'].max()
+
+minneh= 2.0 #0.1
+maxneh= n_out_iso_max['eh'].max()#1.0 #n_out['eh'].max()
+
+
 
 
 
@@ -131,6 +142,12 @@ levelsnec = np.logspace(np.log10(minnec), np.log10(maxnec), nlevels)
 
 # Create a Normalize object for logarithmic scale
 normnec = colors.LogNorm(vmin=minnec, vmax=maxnec)
+
+# Set the levels for contour plots
+levelsneh = np.logspace(np.log10(minneh), np.log10(maxneh), nlevels)
+
+# Create a Normalize object for logarithmic scale
+normneh = colors.LogNorm(vmin=minneh, vmax=maxneh)
 
 
 levelsnsp = np.logspace(np.log10(minnsp), np.log10(maxnsp), nlevels)
@@ -152,6 +169,10 @@ levelsno2p = np.logspace(np.log10(minno2p), np.log10(maxno2p), nlevels)
 normno2p = colors.LogNorm(vmin=minno2p, vmax=maxno2p)
 
 
+levelsnoph = np.logspace(np.log10(minnoph), np.log10(maxnoph), nlevels)
+normnoph = colors.LogNorm(vmin=minnoph, vmax=maxnoph)
+
+
 
 levelsnap = np.logspace(np.log10(minnnap), np.log10(maxnnap), nlevels)
 normnap = colors.LogNorm(vmin=minnnap, vmax=maxnnap)
@@ -159,8 +180,8 @@ normnap = colors.LogNorm(vmin=minnnap, vmax=maxnnap)
 levelsnhp = np.logspace(np.log10(minnhp), np.log10(maxnhp), nlevels)
 normnhp = colors.LogNorm(vmin=minnhp, vmax=maxnhp)
 
-levelss = [levelsnop,levelsno2p,levelsnsp, levelsns2p, levelsns3p, levelsnhp, levelsnap, levelsnec]
-normss = [normnop,normno2p,normnsp, normns2p, normns3p,normnhp, normnap, normnec]
+levelss = [levelsnop,levelsno2p,levelsnsp, levelsns2p, levelsns3p, levelsnhp, levelsnap, levelsnoph, levelsneh, levelsnec]
+normss = [normnop,normno2p,normnsp, normns2p, normns3p,normnhp, normnap, normnoph, normneh, normnec]
 
 
 # Prepare the tick marks and labels for the colorbars
@@ -247,20 +268,35 @@ cbar_ticks_nnap = [
 cbar_label_ticks_nnap = [0.1, 1, 10, 100]
 cbar_tick_labels_nnap = {tick: str(tick) if tick in cbar_label_ticks_nnap else '' for tick in cbar_ticks_nnap}
 
+cbar_ticks_noph = [
+    0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
+    1, 2, 3, 4, 5, 6, 7, 8, 9,
+    10, 20, 30, 40, 50, 60, 70, 80, 90,
+    100, 200
+]
+cbar_label_ticks_noph = [0.1, 1, 10, 100,200]
+cbar_tick_labels_noph = {tick: str(tick) if tick in cbar_label_ticks_noph else '' for tick in cbar_ticks_noph}
 
 
 
-cbar_tickss = [cbar_ticks_nop,cbar_ticks_no2p,cbar_ticks_nsp,cbar_ticks_ns2p,cbar_ticks_ns3p,cbar_ticks_nhp,cbar_ticks_nnap,cbar_ticks_nec]
-cbar_label_tickss = [cbar_label_ticks_nop,cbar_label_ticks_no2p,cbar_label_ticks_nsp,cbar_label_ticks_ns2p,cbar_label_ticks_ns3p,cbar_label_ticks_nhp,cbar_label_ticks_nnap,cbar_label_ticks_nec]
-cbar_tick_labelss = [cbar_tick_labels_nop,cbar_tick_labels_no2p,cbar_tick_labels_nsp,cbar_tick_labels_ns2p,cbar_tick_labels_ns3p,cbar_tick_labels_nhp,cbar_tick_labels_nnap,cbar_tick_labels_nec]
+cbar_ticks_neh = [
+     2, 3, 4
+]
+cbar_label_ticks_neh = [ 2, 4]
+cbar_tick_labels_neh = {tick: str(tick) if tick in cbar_label_ticks_neh else '' for tick in cbar_ticks_neh}
+
+
+
+
+
+cbar_tickss = [cbar_ticks_nop,cbar_ticks_no2p,cbar_ticks_nsp,cbar_ticks_ns2p,cbar_ticks_ns3p,cbar_ticks_nhp,cbar_ticks_nnap,cbar_ticks_noph,cbar_ticks_neh,cbar_ticks_nec]
+cbar_label_tickss = [cbar_label_ticks_nop,cbar_label_ticks_no2p,cbar_label_ticks_nsp,cbar_label_ticks_ns2p,cbar_label_ticks_ns3p,cbar_label_ticks_nhp,cbar_label_ticks_nnap,cbar_label_ticks_noph,cbar_label_ticks_neh,cbar_label_ticks_nec]
+cbar_tick_labelss = [cbar_tick_labels_nop,cbar_tick_labels_no2p,cbar_tick_labels_nsp,cbar_tick_labels_ns2p,cbar_tick_labels_ns3p,cbar_tick_labels_nhp,cbar_tick_labels_nnap,cbar_tick_labels_noph,cbar_tick_labels_neh,cbar_tick_labels_nec]
 # Plot each species
 
-
 #for idx, key in enumerate(species_keys):
-#old_species_keys = ['op', 'o2p', 'sp', 's2p', 's3p', 'hp', 'nap', 'oph', 'eh', 'elec']
-#species_keys = ['op', 'o2p', 'sp', 's2p', 's3p', 'hp', 'nap', 'elec']
-idxs =[7,2,0,3,1,4,5,6]
-# Define contour levels for black contour lines for each species
+#species_keys = ['op', 'o2p', 'sp', 's2p', 's3p', 'hp', 'nap', 'oph', 'eh', 'elec']
+idxs =[9,8,0,2,1,3,7,4,5,6]
 contour_levelss_old = [
     [1,  100],        # For 'op'
     [ 1, 30],        # For 'o2p'
@@ -269,10 +305,11 @@ contour_levelss_old = [
     [1, 30],        # For 's3p'
     [5, 20],        # For 'hp'
     [1,  30],        # For 'nap'
+    [1,  100],        # For 'noph',
+    [2,  3],        # For 'neh'
     [10, 100, 1000]      # For 'elec'
 ]
-
-contour_levelss_old2 = [
+contour_levelss_old = [
     [1, 50, 100,500],        # For 'op'
     [ 1,10, 30,50],        # For 'o2p'
     [1, 10,50, 100,500],        # For 'sp'
@@ -280,8 +317,11 @@ contour_levelss_old2 = [
     [0.5,5, 20,50],        # For 's3p'
     [5,15,35],        # For 'hp'
     [1,  30],        # For 'nap'
+    [1, 50, 100],        # For 'noph',
+    [0.3, 0.8],        # For 'neh'
     [10, 100, 500,1000,2000]      # For 'elec'
 ]
+
 
 
 contour_levelss = [
@@ -292,15 +332,14 @@ contour_levelss = [
     [1,30],        # For 's3p'
     [5,20],        # For 'hp'
     [1,  30],        # For 'nap'
+    [1, 50, 100],        # For 'noph',
+    [3, 5],        # For 'neh'
     [10, 100,1000]      # For 'elec'
 ]
 
-
-
-
     
 
-for iii in range(8):
+for iii in range(10):
     idx = idxs[iii]
     ax = axes[iii]
     key = species_keys[idx]
@@ -357,6 +396,8 @@ for iii in range(8):
 
     # Plot using contourf
     contour = ax.contourf(rho_grid, z_grid, density_grid, levels=levels, norm=norm, cmap='viridis')
+    for c in contour.collections:
+        c.set_rasterized(True)
     # Define contour levels for black contour lines for each species
     # Add black contour lines with labels
     contour_lines = ax.contour(rho_grid, z_grid, density_grid, levels=contour_levels, colors='black', linewidths=1)
@@ -463,8 +504,10 @@ fig.text(0.02, 0.5, '$z_c$ ($R_J$)', va='center', rotation='vertical', fontsize=
 
 
 
-# Save the figure with resolution 500 dpi
-plt.savefig('caseA_final.png', dpi=600, bbox_inches='tight', pad_inches=0)
+# Save the figure with resolution 600 dpi
+
+#plt.savefig('new_caseB_final.pdf', dpi=600, bbox_inches='tight', pad_inches=0)
+plt.savefig('new_case_aniso2_constTperp_final.pdf', dpi=600, bbox_inches='tight', pad_inches=0)
 
 # Show the plot if running interactively
 plt.show()
